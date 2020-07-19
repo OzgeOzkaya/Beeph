@@ -1,5 +1,5 @@
 from flask import Flask, redirect, url_for, render_template, request
-
+import json
 app = Flask(__name__)
 
 
@@ -7,6 +7,10 @@ app = Flask(__name__)
 # def home():
 #     return render_template("index.html", content="Testing")
 
+with open('countries.json') as json_file:
+    data = json.load(json_file)
+
+countries = data.keys()
 
 @app.route("/login", methods=['POST', 'GET'])
 def login():
@@ -25,9 +29,22 @@ def user(usr):
     # return f"<h1>{usr}</h1>"
     return render_template("employer.html")
 
-@app.route("/post_a_job_employer")
+@app.route("/post_a_job_employer", methods=['GET', 'POST'])
 def post_a_job():
-    return render_template("post_a_job_employer.html")
+    if request.method == "POST":
+        job_title = request.form['job_title']
+        country = request.form["country"]
+        city = request.form["city"]
+        state = request.form["state"]
+        industry = request.form["industry"]
+        department = request.form["department"]
+        if request.form['submit'] == 'submitt':
+            return render_template("my_posts_employer.html")
+        elif request.form['submit'] == 'interview':
+            return render_template("add_interview_questions.html")
+    else:
+        # Toast eklenecek
+        return render_template("post_a_job_employer.html", countries=countries)
 
 @app.route("/my_posts_employer")
 def my_posts():
