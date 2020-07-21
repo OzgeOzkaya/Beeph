@@ -11,6 +11,7 @@ $('#country').change(function() {
 
 function find_cities(cities) {
     var parsed = JSON.parse('{{cities | tojson}}');
+    var hello = "hello";
 
     var json_data = {
         "aaa" : JSON.stringify(cities)
