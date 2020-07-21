@@ -19,7 +19,7 @@
         <div class="form-row">
             <div class="col-md-6 mb-3">
                 <label for="validationTooltip01">Job Title</label>
-                <input type="text" name="job_title" class="form-control" id="validationTooltip01" value="Mark" required>
+                <input type="text" name="job_title" class="form-control" id="job_title" value="Mark" required>
                 <div class="valid-tooltip">
                     Looks good!
                 </div>
@@ -28,7 +28,7 @@
         <div class="form-row">
             <div class="col-md-4 mb-3">
                 <label for="validationTooltip04">Country</label>
-                <select class="custom-select" name="country" id="validationTooltip04" required>
+                <select class="custom-select" name="country" id="country" required>
 
                     {% for o in countries %}
                         <option value="{{ o }}" SELECTED>{{ o }}</option>
@@ -178,4 +178,8 @@
         </div>
 
     </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/static/employer_js/deneme.js"></script>
 {% endblock %}
+

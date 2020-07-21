@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, render_template, request
+from flask import Flask, redirect, url_for, render_template, request, jsonify
 import json
 app = Flask(__name__)
 
@@ -11,6 +11,7 @@ with open('countries.json') as json_file:
     data = json.load(json_file)
 
 countries = data.keys()
+cities = list(data.values())
 
 @app.route("/login", methods=['POST', 'GET'])
 def login():
@@ -44,7 +45,7 @@ def post_a_job():
             return render_template("add_interview_questions.html")
     else:
         # Toast eklenecek
-        return render_template("post_a_job_employer.html", countries=countries)
+        return render_template("post_a_job_employer.html", countries=countries, cities = cities)
 
 @app.route("/my_posts_employer")
 def my_posts():
